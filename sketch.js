@@ -1,12 +1,11 @@
 let imagemCenario;
 let imagemPersonagem;
 let imagemInimigo;
+let imagemInimigoVoador;
 let cenario;
 let trilhaJogo;
 let trilhaPulo;
 let personagem;
-let inimigo;
-let inimigoMaior;
 let inimigos = [];
 let pontuacao;
 
@@ -70,7 +69,26 @@ const matizInimigoMaior = [
   [0, 2000],
   [400, 2000],
   [800, 2000],
-]
+];
+
+const matrizInimigoVoador = [
+  [0,0],
+  [200, 0],
+  [400, 0],
+  [0, 150],
+  [200, 150],
+  [400, 150],
+  [0, 300],
+  [200, 300],
+  [400, 300],
+  [0, 450],
+  [200, 450],
+  [400, 450],
+  [0, 600],
+  [200, 600],
+  [400, 600],
+  [0, 750],
+];
 
 const matrizHipsta = [
       [0,0],
@@ -97,18 +115,23 @@ function preload(){
   imagemPersonagem = loadImage('./images/personagem/correndo.png');
   imagemInimigo = loadImage('./images/inimigos/gotinha.png');
   imagemInimigoMaior = loadImage('./images/inimigos/troll.png');
-
-   
-  personagem = new Personagem(matrizHipsta, imagemPersonagem, 0, 30,110, 170, 220, 270);
-  const inimigo = new Inimigo(matrizInimigo, imagemInimigo, width-52, 30,52, 52,104,104);
-  const inimigoVoador = new Inimigo()
-  const inimigoMaior = new Inimigo(matizInimigoMaior, imagemInimigoMaior, width*2, 0, 200, 200, 400, 400 );
-
+  imagemInimigoVoador = loadImage('./images/inimigos/gotinha-voadora.png');
+  imagemGameOver = loadImage('./images/assets/game-over.png');
+  
   trilhaJogo = loadSound('./sons/trilha_jogo.mp3');
   trilhaPulo = loadSound('./sons/somPulo.mp3');
 }
 
 function setup() {
+  personagem = new Personagem(matrizHipsta, imagemPersonagem, 0, 30,110, 170, 220, 270);
+  const inimigo = new Inimigo(matrizInimigo, imagemInimigo, width-52, 30,52, 52,104,104);
+  const inimigoVoador = new Inimigo(matrizInimigoVoador, imagemInimigoVoador, width - 52, 200, 100, 75, 200, 150, 10, 1500)
+  const inimigoMaior = new Inimigo(matizInimigoMaior, imagemInimigoMaior, width*2, 0, 200, 200, 400, 400 );
+
+  inimigos.push(inimigo);
+  inimigos.push(inimigoMaior);
+  inimigos.push(inimigoVoador);
+  
   createCanvas(windowWidth, windowHeight);
   cenario = new Cenario(imagemCenario, 1);
   pontuacao = new Pontuacao();
@@ -129,19 +152,24 @@ function draw() {
   //circle(mouseX, mouseY, 10);
   //background(cenario, 0, 0, width, height);
   //image(location, xAxis, Yaxis, width, height, spritPosition, spritXPixels, spritYPixels)
+  
   cenario.exibe();
   cenario.move();
+  
   pontuacao.exibe();
+  
   personagem.exibe();
   personagem.aplicaGravidade();
-  inimigo.exibe();
-  inimigo.move();
-  inimigoMaior.exibe();
-  inimigoMaior.move();
   
-  if(personagem.estaColidindo(inimigo)){
-    console.log('colidiu');
-    noLoop();
-  }
+  inimigos.forEach(inimigo => {
+    inimigo.exibe()
+    inimigo.move()
+    
+    if (personagem.estaColidindo(inimigo)) {
+      image(imagemGameOver, width/2 - 200, height/3)      
+      noLoop()
+    }
+    
+  })
   
 }
