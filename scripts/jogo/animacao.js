@@ -8,13 +8,11 @@ class Animacao{
     
     this.x = x;
     
-    
-
     this.larguraSprite = larguraSprite;
     this.alturaSprite = alturaSprite;
     
     this.frameAtual = 0;
-    
+    //a variável height, do p5, não está sendo reconhecida aqui, portanto uso o tamanho 835 
     this.y = 835-this.altura-this.variacaoY;
   }
     exibe(){
