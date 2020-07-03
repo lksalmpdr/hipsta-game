@@ -166,8 +166,9 @@ function draw() {
     inimigo.move()
     
     if (personagem.estaColidindo(inimigo)) {
-      image(imagemGameOver, width/2 - 200, height/3)      
-      noLoop()
+      //image(imagemGameOver, width/2 - 200, height/3);
+      //noLoop();
+      console.log('colisao');
     }
     
   })
