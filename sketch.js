@@ -93,10 +93,10 @@ const matrizHipsta = [
 
 function preload(){
   
-  imagemCenario = loadImage('./imagens/cenario/floresta.png');
-  imagemPersonagem = loadImage('./imagens/personagem/correndo.png');
-  imagemInimigo = loadImage('./imagens/inimigos/gotinha.png');
-  imagemInimigoMaior = loadImage('./imagens/inimigos/troll.png');
+  imagemCenario = loadImage('./images/cenario/floresta.png');
+  imagemPersonagem = loadImage('./images/personagem/correndo.png');
+  imagemInimigo = loadImage('./images/inimigos/gotinha.png');
+  imagemInimigoMaior = loadImage('./images/inimigos/troll.png');
 
    
   personagem = new Personagem(matrizHipsta, imagemPersonagem, 0, 30,110, 170, 220, 270);
