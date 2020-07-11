@@ -7,9 +7,9 @@ class Jogo{
 	setup(){
 		personagem = new Personagem(matrizHipsta, imagemPersonagem, 0, 30,110, 170, 220, 270);
       
-		const inimigo = new Inimigo(matrizInimigo, imagemInimigo, width-52, 30, 52, 52, 104, 104, 20);
+		const inimigo = new Inimigo(matrizInimigo, imagemInimigo, width-52, 30, 30, 52, 104, 104, 20);
 		const inimigoVoador = new Inimigo(matrizInimigoVoador, imagemInimigoVoador, 52, 200, 100, 75, 200, 150, 10)
-		const inimigoMaior = new Inimigo(matizInimigoMaior, imagemInimigoMaior, width, 0, 200, 200, 400, 400, 15);
+		const inimigoMaior = new Inimigo(matizInimigoMaior, imagemInimigoMaior, width, 30, 200, 200, 400, 400, 15);
 
 		inimigos.push(inimigo);
 		inimigos.push(inimigoMaior);
