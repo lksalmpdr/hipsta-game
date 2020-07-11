@@ -2,13 +2,22 @@ let imagemCenario;
 let imagemPersonagem;
 let imagemInimigo;
 let imagemInimigoVoador;
+let imagemTelaInicial;
+let imagemFonteTelaInicial;
 let cenario;
 let trilhaJogo;
 let trilhaPulo;
 let personagem;
 let inimigos = [];
-let inimigoAtual = 0;
 let pontuacao;
+let jogo;
+let telaInicial;
+let botaoGerenciador;
+let vida;
+let imagemVida;
+let cartucho;
+let cenaAtual = 'telaInicial';
+let cenas;
 
 const matrizInimigo = [
   [0,0], 
